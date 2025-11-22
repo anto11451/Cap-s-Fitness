@@ -1,68 +1,107 @@
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLocation } from "wouter";
-import { Dumbbell, Zap, Heart } from "lucide-react";
-import heroImage from "@assets/generated_images/purple-pink_gradient_fitness_hero.png";
+import { Dumbbell, ClipboardList, DollarSign, Users, Newspaper } from "lucide-react";
+import heroImage from "@assets/generated_images/modern_gym_fitness_hero.png";
 
 export default function LandingPage() {
   const [, setLocation] = useLocation();
+
+  const sections = [
+    {
+      title: "Client Intake",
+      description: "Complete your personalized fitness assessment in minutes",
+      icon: ClipboardList,
+      path: "/intake",
+      color: "from-purple-500 to-pink-500",
+      testId: "card-intake"
+    },
+    {
+      title: "Pricing",
+      description: "Explore our coaching packages and find the perfect plan",
+      icon: DollarSign,
+      path: "/pricing",
+      color: "from-blue-500 to-cyan-500",
+      testId: "card-pricing"
+    },
+    {
+      title: "About Us",
+      description: "Learn about our mission and meet the BOLD FITNESS team",
+      icon: Users,
+      path: "/about",
+      color: "from-green-500 to-emerald-500",
+      testId: "card-about"
+    },
+    {
+      title: "Fitness Blog",
+      description: "Tips, workouts, and inspiration from our coaches",
+      icon: Newspaper,
+      path: "/blog",
+      color: "from-orange-500 to-red-500",
+      testId: "card-blog"
+    },
+  ];
 
   return (
     <div className="min-h-screen relative overflow-hidden">
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url(${heroImage})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(${heroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
       
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-12">
-        <div className="max-w-4xl w-full text-center space-y-8">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Dumbbell className="w-12 h-12 text-primary-foreground" />
+      <div className="relative z-10 min-h-screen flex flex-col px-6 py-12">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Dumbbell className="w-12 h-12 text-primary" />
             <h1 className="text-5xl md:text-6xl font-bold text-white tracking-tight">
               BOLD FITNESS
             </h1>
           </div>
-          
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-semibold text-white/95">
-              Intake
-            </h2>
-            <p className="text-xl md:text-2xl text-white/90 font-medium">
-              Fast onboarding — feels like an app.
-            </p>
-            <p className="text-sm md:text-base text-white/70 max-w-2xl mx-auto font-light">
-              Complete your personalized fitness assessment in just a few minutes. 
-              We'll create a custom plan tailored to your goals, lifestyle, and preferences.
-            </p>
-          </div>
+          <p className="text-lg md:text-xl text-white/80 font-light max-w-2xl mx-auto">
+            Transform your body, elevate your mind, achieve your goals
+          </p>
+        </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-8 py-8">
-            <div className="flex items-center gap-3 text-white/80">
-              <Zap className="w-6 h-6 text-primary" />
-              <span className="text-sm font-medium">5 Quick Steps</span>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="max-w-6xl w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {sections.map((section) => {
+                const Icon = section.icon;
+                return (
+                  <Card
+                    key={section.path}
+                    className="cursor-pointer hover-elevate active-elevate-2 transition-all hover:scale-105 overflow-hidden"
+                    onClick={() => setLocation(section.path)}
+                    data-testid={section.testId}
+                  >
+                    <div className={`h-2 bg-gradient-to-r ${section.color}`} />
+                    <CardHeader className="space-y-3">
+                      <div className={`w-14 h-14 rounded-full bg-gradient-to-r ${section.color} flex items-center justify-center`}>
+                        <Icon className="w-7 h-7 text-white" />
+                      </div>
+                      <CardTitle className="text-2xl">{section.title}</CardTitle>
+                      <CardDescription className="text-base">
+                        {section.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">
+                        Click to explore →
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
-            <div className="flex items-center gap-3 text-white/80">
-              <Heart className="w-6 h-6 text-primary" />
-              <span className="text-sm font-medium">Personalized Plan</span>
-            </div>
           </div>
+        </div>
 
-          <div className="pt-4">
-            <Button 
-              size="lg"
-              className="rounded-full px-12 py-6 text-lg font-semibold shadow-2xl hover:scale-105 transition-transform"
-              onClick={() => setLocation("/intake")}
-              data-testid="button-start-intake"
-            >
-              Start Now
-            </Button>
-          </div>
-
-          <p className="text-xs text-white/50 pt-8">
-            Your journey to peak fitness starts here
+        <div className="text-center mt-12">
+          <p className="text-xs text-white/50">
+            © 2024 BOLD FITNESS. Your journey to peak performance starts here.
           </p>
         </div>
       </div>
