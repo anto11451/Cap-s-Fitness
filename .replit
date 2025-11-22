@@ -15,7 +15,7 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 43971
+localPort = 43215
 externalPort = 3000
 
 [env]
@@ -41,3 +41,9 @@ author = "agent"
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
+
+[userenv]
+
+[userenv.shared]
+GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"
+GOOGLE_SHEETS_API_SECRET = "CapSecret2025"

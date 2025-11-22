@@ -105,7 +105,29 @@ export default function IntakeForm() {
 
   const handleSubmit = async () => {
     console.log("Submitting form data:", formData);
-    setIsSubmitted(true);
+    
+    try {
+      const response = await fetch("/api/submit-intake", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        console.log("Form submitted successfully:", result);
+        setIsSubmitted(true);
+      } else {
+        console.error("Form submission failed:", result.error);
+        alert("There was an error submitting your intake. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("There was an error submitting your intake. Please try again.");
+    }
   };
 
   const handleEdit = (step: number) => {
