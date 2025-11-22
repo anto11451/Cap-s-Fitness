@@ -27,11 +27,8 @@ export default function Admin() {
 
   const createPostMutation = useMutation({
     mutationFn: async (post: { title: string; content: string; author: string; category: string }) => {
-      return apiRequest("/api/blog-posts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(post),
-      });
+      const res = await apiRequest("POST", "/api/blog-posts", post);
+      return res.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
@@ -55,9 +52,8 @@ export default function Admin() {
 
   const deletePostMutation = useMutation({
     mutationFn: async (id: string) => {
-      return apiRequest(`/api/blog-posts/${id}`, {
-        method: "DELETE",
-      });
+      const res = await apiRequest("DELETE", `/api/blog-posts/${id}`);
+      return res.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
