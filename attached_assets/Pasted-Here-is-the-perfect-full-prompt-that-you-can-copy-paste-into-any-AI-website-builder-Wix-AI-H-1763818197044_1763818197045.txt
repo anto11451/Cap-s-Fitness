@@ -1,0 +1,213 @@
+Here is **the perfect full prompt** that you can copy-paste into *any AI website builder* (Wix AI, Hostinger AI, Framer AI, Durable AI, Dorik AI, etc.).
+This prompt is written like a professional product brief so the AI produces the **exact website you want**.
+
+---
+
+# ✅ **THE PERFECT FULL PROMPT (Copy–Paste)**
+
+**Build a premium, high-end onboarding website for my fitness coaching brand “BOLD FITNESS.”
+This website must look and feel like a modern mobile app.**
+
+---
+
+## 🔥 **Purpose of the Website**
+
+This site is a **fitness intake system** where users fill a multi-step form that collects:
+
+* Personal details
+* Fitness goals
+* Health information
+* Lifestyle details
+* Workout preferences
+* Nutrition preferences
+
+The form must save responses to a **Google Sheets backend** through my already-working Apps Script API.
+
+---
+
+## 🔥 **Overall Style**
+
+Create a **professional, modern, app-like UI** with:
+
+* Clean typography
+* Smooth animations
+* Elegant spacing
+* Rounded UI components
+* Friendly onboarding flow
+* A premium fitness/personal-trainer vibe
+* Completely responsive on mobile (primary audience)
+
+The visual style should feel like:
+
+**Apple Fitness + Nike Training Club + Whoop + Modern Coaching Apps.**
+
+Use a **purple–pink gradient theme** or a **clean white modern UI** — whichever your AI can support best.
+
+---
+
+## 🔥 **Website Structure**
+
+### **Page 1 — Landing / Welcome Page**
+
+* Brand title: **BOLD FITNESS — Intake**
+* Sub-headline: “Fast onboarding — feels like an app.”
+* Motivational micro-text
+* A “Start Now” button that leads into the multi-step form
+* Clean hero section
+
+---
+
+## 🔥 **Page 2 — Multi-Step Intake Form**
+
+This is the MOST IMPORTANT part.
+
+Create a **5–step multi-page form** with:
+
+* Step indicator (Step 1 → Step 5)
+* Card-style containers
+* Gradient or clean theme
+* App-like inputs
+* Required fields
+* Smooth transitions between steps
+
+---
+
+### **Form Fields (in order)**
+
+#### **STEP 1 — Personal Details**
+
+* Name (input)
+* Age (input, number)
+* Gender (dropdown)
+* Phone (input)
+* Email (input)
+
+---
+
+#### **STEP 2 — Body & Lifestyle**
+
+* Height
+* Weight
+* Sleep Hours (dropdown: <5, 6–7, 7–8, >8)
+* Sitting Hours (dropdown: <2, 2–4, 4–6, 6+)
+* Stress Level (slider 1–10)
+* Activity Level (dropdown + info tooltip for each option)
+
+  * Sedentary
+  * Lightly Active
+  * Moderately Active
+  * Very Active
+  * Athlete
+
+---
+
+#### **STEP 3 — Health Info**
+
+All fields required.
+
+* Known Medical Conditions (textarea)
+* On Medications (Yes/No toggle)
+  → If YES: show popup / additional text area: “List medications and reason”
+* Past Surgeries (Yes/No toggle)
+  → If YES: show popup text area: “Describe your past surgeries”
+* Consulted Doctor? (Yes/No)
+
+---
+
+#### **STEP 4 — Goals & Training**
+
+* Primary Goal (dropdown: fat loss, muscle gain, strength, general fitness, etc.)
+* Short-Term Goal (text)
+* Long-Term Goal (text)
+* Motivation (dropdown: appearance, health, strength, energy, other)
+* Training Style (dropdown: Gym, Home workout, Outdoor)
+* Days Per Week (dropdown: 1–2, 3–4, 5–6, 7)
+* Equipment List
+
+  * If “Home”: show multi-select chips (dumbbells, band, bench, mat, etc.)
+  * If “Gym”: skip equipment
+  * If “Outdoor”: skip equipment
+
+---
+
+#### **STEP 5 — Nutrition Preferences**
+
+* Eating Pattern (dropdown: 3 meals/day, 4 meals/day, flexible, intermittent fasting, etc.)
+* Foods You Love (multi-tag selector)
+* Foods You Avoid (multi-tag selector)
+* Additional Notes (textarea)
+
+---
+
+## 🔥 **Final Step — Review & Submit**
+
+Show a summary page:
+
+* Display all user-entered data
+* A green “Success: We'll contact you soon” checkmark after submit
+* Make the design **clean and modern**
+
+When user taps “Submit”:
+
+📌 **POST the entire form JSON to my API endpoint**
+Use:
+
+```
+https://script.google.com/macros/s/AKfycbwTNOs…/exec
+```
+
+with body including:
+
+```
+{
+  "_secret": "CapSecret2025",
+  "formId": "cap_form_v1",
+  …all form fields…
+}
+```
+
+---
+
+## 🔥 **Brand Feel**
+
+The site should feel:
+
+* Friendly
+* Motivating
+* Professional
+* Fast
+* Smooth like a mobile fitness onboarding app
+
+This is not a boring form — it must feel like a true **premium guided fitness intake**.
+
+---
+
+## 🔥 **Technical Requirements**
+
+* Fully mobile responsive
+* Multi-step form
+* Smooth transitions
+* Modern UI cards
+* Editable theme
+* Must allow me to embed my API URL
+* Should export clean HTML/CSS/JS or React (if supported)
+
+---
+
+# 👉 FINAL INSTRUCTION
+
+**Build this entire site exactly according to this spec.
+Do not oversimplify.
+Do not remove steps.
+Make it premium and app-like.**
+
+---
+
+If you'd like, I can also generate:
+
+✅ A shorter prompt
+✅ A version specific to Wix / Framer / Hostinger / Vercel AI
+✅ A version with custom brand colors
+✅ A version with sample screenshots
+
+Just tell me.
