@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,12 +13,23 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import type { BlogPost } from "@shared/schema";
 
+// ---------------------------------------------------------
+// 🔐 AUTH CHECK – added safely without touching the rest
+// ---------------------------------------------------------
 export default function Admin() {
   const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("adminLoggedIn");
+    if (isLoggedIn !== "true") {
+      setLocation("/admin-login");
+    }
+  }, []);
+
   const { toast } = useToast();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [author, setAuthor] = useState("BOLD FITNESS Team");
+  const [author, setAuthor] = useState("Cap's FITNESS Team");
   const [category, setCategory] = useState("Fitness Tips");
 
   const { data: posts, isLoading } = useQuery<BlogPost[]>({
@@ -34,7 +45,7 @@ export default function Admin() {
       queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
       setTitle("");
       setContent("");
-      setAuthor("BOLD FITNESS Team");
+      setAuthor("Anto (Cap)");
       setCategory("Fitness Tips");
       toast({
         title: "Success!",
@@ -96,6 +107,7 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-primary/10 py-12 px-4">
       <div className="max-w-6xl mx-auto">
+
         <Button
           variant="ghost"
           onClick={() => setLocation("/blog")}
@@ -105,6 +117,19 @@ export default function Admin() {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Blog
         </Button>
+
+        <div className="flex justify-end mb-4">
+          {/* 🔐 LOGOUT BUTTON */}
+          <Button
+            variant="destructive"
+            onClick={() => {
+              localStorage.removeItem("adminLoggedIn");
+              setLocation("/admin-login");
+            }}
+          >
+            Logout
+          </Button>
+        </div>
 
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -126,6 +151,7 @@ export default function Admin() {
                 Share fitness tips, workouts, and nutrition advice with your community
               </CardDescription>
             </CardHeader>
+
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
@@ -137,7 +163,6 @@ export default function Admin() {
                     placeholder="Enter post title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    data-testid="input-title"
                   />
                 </div>
 
@@ -149,14 +174,13 @@ export default function Admin() {
                       placeholder="Author name"
                       value={author}
                       onChange={(e) => setAuthor(e.target.value)}
-                      data-testid="input-author"
                     />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="category">Category</Label>
                     <Select value={category} onValueChange={setCategory}>
-                      <SelectTrigger id="category" data-testid="select-category">
+                      <SelectTrigger id="category">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -166,6 +190,8 @@ export default function Admin() {
                         <SelectItem value="Recovery">Recovery</SelectItem>
                         <SelectItem value="Motivation">Motivation</SelectItem>
                         <SelectItem value="Workouts">Workouts</SelectItem>
+                        <SelectItem value="Fat Loss">Fat loss</SelectItem>
+                        <SelectItem value="Fitness Education">Fitness Education</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -181,16 +207,10 @@ export default function Admin() {
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     rows={8}
-                    data-testid="textarea-content"
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={createPostMutation.isPending}
-                  data-testid="button-create-post"
-                >
+                <Button type="submit" className="w-full" disabled={createPostMutation.isPending}>
                   {createPostMutation.isPending ? "Creating..." : "Create Post"}
                 </Button>
               </form>
@@ -201,9 +221,7 @@ export default function Admin() {
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle>Published Posts</CardTitle>
-                <CardDescription>
-                  Manage your existing blog posts
-                </CardDescription>
+                <CardDescription>Manage your existing blog posts</CardDescription>
               </CardHeader>
               <CardContent>
                 {isLoading ? (
@@ -218,34 +236,34 @@ export default function Admin() {
                 ) : posts && posts.length > 0 ? (
                   <div className="space-y-4 max-h-[600px] overflow-y-auto">
                     {posts.map((post) => (
-                      <Card key={post.id} className="hover-elevate" data-testid={`card-manage-post-${post.id}`}>
+                      <Card key={post.id} className="hover-elevate">
                         <CardHeader className="space-y-3 pb-4">
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex-1 space-y-2">
-                              <div className="flex items-center gap-2">
-                                <Badge variant="secondary" className="text-xs">
-                                  {post.category}
-                                </Badge>
-                              </div>
+                              <Badge variant="secondary" className="text-xs">
+                                {post.category}
+                              </Badge>
                               <CardTitle className="text-base leading-tight">
                                 {post.title}
                               </CardTitle>
                             </div>
+
                             <Button
                               variant="ghost"
                               size="sm"
                               onClick={() => deletePostMutation.mutate(post.id)}
                               disabled={deletePostMutation.isPending}
-                              data-testid={`button-delete-${post.id}`}
                             >
                               <Trash2 className="w-4 h-4 text-destructive" />
                             </Button>
                           </div>
+
                           <div className="flex flex-col gap-2 text-xs text-muted-foreground">
                             <div className="flex items-center gap-1">
                               <User className="w-3 h-3" />
                               <span>{post.author}</span>
                             </div>
+
                             <div className="flex items-center gap-1">
                               <Calendar className="w-3 h-3" />
                               <span>{formatDate(post.createdAt)}</span>

@@ -1,4 +1,4 @@
-# BOLD FITNESS Intake Website - Design Guidelines
+# Cap's FITNESS Intake Website - Design Guidelines
 
 ## Design Approach: Reference-Based
 **Primary Inspiration:** Apple Fitness + Nike Training Club + Whoop + Modern Coaching Apps
@@ -44,7 +44,7 @@
 ### Landing Page (Page 1)
 **Hero Section:**
 - Centered vertical layout
-- Brand title "BOLD FITNESS — Intake" - large, bold typography
+- Brand title "Cap's FITNESS — Intake" - large, bold typography
 - Sub-headline: "Fast onboarding — feels like an app." - medium weight
 - Motivational micro-text - light, smaller
 - Prominent "Start Now" CTA button - large, rounded, gradient or solid depending on theme

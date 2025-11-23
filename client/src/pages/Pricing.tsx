@@ -9,47 +9,48 @@ export default function Pricing() {
 
   const plans = [
     {
-      name: "Starter",
-      price: "$99",
-      period: "/month",
-      description: "Perfect for beginners starting their fitness journey",
+      name: "Weekly Starter Plan",
+      price: "₹199",
+      period: "/week",
+      description: "Perfect for beginners who want light guidance and a basic structured plan",
       features: [
-        "Personalized workout plan",
-        "Monthly progress check-ins",
-        "Email support",
-        "Basic nutrition guidelines",
-        "Access to workout library",
+        "Basic personalised diet",
+        "Basic workout plan",
+        "Weekly check-in",
+        "Light guidance",
+        "No mid-week adjustments"
       ],
       popular: false,
     },
     {
-      name: "Pro",
-      price: "$199",
-      period: "/month",
-      description: "For dedicated athletes seeking serious results",
+      name: "4-Week Coaching Plan",
+      price: "₹699",
+      period: "/4 weeks",
+      description: "Full coaching experience with adjustments, support & complete personalization",
       features: [
-        "Everything in Starter",
-        "Weekly 1-on-1 coaching calls",
-        "Custom meal planning",
-        "24/7 chat support",
-        "Advanced progress tracking",
-        "Supplement recommendations",
+        "Fully personalised diet plan",
+        "Custom workout plan (home/gym)",
+        "Weekly check-ins",
+        "Weekly adjustments",
+        "WhatsApp support (reasonable hours)",
+        "Lifestyle habit guidance"
       ],
       popular: true,
     },
     {
-      name: "Elite",
-      price: "$399",
-      period: "/month",
-      description: "Premium coaching for maximum transformation",
+      name: "8-Week Transformation Plan",
+      price: "₹1499",
+      period: "/8 weeks",
+      description: "Complete transformation program with priority support and weekly upgrades",
       features: [
-        "Everything in Pro",
-        "Unlimited coaching access",
-        "In-person training sessions",
-        "Recovery & mobility programming",
-        "Mindset & performance coaching",
+        "Everything in 4-week plan",
+        "Weekly personalised updates",
+        "Habit & lifestyle coaching",
         "Priority support",
-        "Quarterly fitness assessments",
+        "Form review (video-based)",
+        "Progress tracking",
+        "End-of-program review",
+        "Maintenance strategy"
       ],
       popular: false,
     },
@@ -58,31 +59,33 @@ export default function Pricing() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-primary/10 py-12 px-4">
       <div className="max-w-7xl mx-auto">
+
+        {/* Back Button */}
         <Button
           variant="ghost"
           onClick={() => setLocation("/")}
           className="mb-8"
-          data-testid="button-back-home"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Home
         </Button>
 
+        {/* Heading */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Choose Your Plan
+            Choose Your Coaching Plan
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Flexible coaching packages designed to fit your goals and budget
+            Transparent pricing. No hidden charges. Choose the plan that fits your goal.
           </p>
         </div>
 
+        {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map((plan) => (
             <Card
               key={plan.name}
               className={`relative ${plan.popular ? "border-primary shadow-xl scale-105" : ""}`}
-              data-testid={`card-plan-${plan.name.toLowerCase()}`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
@@ -90,12 +93,12 @@ export default function Pricing() {
                 </div>
               )}
               <CardHeader className="space-y-4 pb-8">
-                <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                <div className="flex items-baseline gap-1">
+                <CardTitle className="text-2xl text-center">{plan.name}</CardTitle>
+                <div className="flex items-baseline justify-center gap-1">
                   <span className="text-5xl font-bold">{plan.price}</span>
                   <span className="text-muted-foreground">{plan.period}</span>
                 </div>
-                <CardDescription className="text-base">{plan.description}</CardDescription>
+                <CardDescription className="text-base text-center">{plan.description}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <ul className="space-y-3">
@@ -106,12 +109,12 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
+
                 <Button
                   className="w-full"
                   variant={plan.popular ? "default" : "outline"}
                   size="lg"
                   onClick={() => setLocation("/intake")}
-                  data-testid={`button-select-${plan.name.toLowerCase()}`}
                 >
                   Get Started
                 </Button>
@@ -120,22 +123,23 @@ export default function Pricing() {
           ))}
         </div>
 
+        {/* Custom Plan */}
         <div className="mt-16 text-center">
           <Card className="max-w-3xl mx-auto">
             <CardHeader>
               <CardTitle>Need a Custom Plan?</CardTitle>
               <CardDescription>
-                We offer personalized coaching packages for teams, corporate wellness programs, 
-                and athletes with specific needs.
+                We offer personalised coaching for corporate teams, athletes, or special goals.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Button variant="outline" size="lg" onClick={() => setLocation("/intake")}>
-                Contact Us for Custom Pricing
+                Contact for Custom Pricing
               </Button>
             </CardContent>
           </Card>
         </div>
+
       </div>
     </div>
   );

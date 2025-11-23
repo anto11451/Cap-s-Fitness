@@ -104,31 +104,28 @@ export default function IntakeForm() {
   };
 
   const handleSubmit = async () => {
-    console.log("Submitting form data:", formData);
-    
-    try {
-      const response = await fetch("/api/submit-intake", {
+  console.log("Submitting form data:", formData);
+
+  try {
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbyIj8QU1GtjKH2x3KAtE42C8x6sjN4HztIDEia61ChpuzNy94PFL3RqShl4PdaTfn4j/exec",
+      {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-      
-      if (result.success) {
-        console.log("Form submitted successfully:", result);
-        setIsSubmitted(true);
-      } else {
-        console.error("Form submission failed:", result.error);
-        alert("There was an error submitting your intake. Please try again.");
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("There was an error submitting your intake. Please try again.");
-    }
-  };
+    );
+
+    console.log("Form submitted successfully");
+    setIsSubmitted(true);
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("There was an error submitting your intake. Please try again.");
+  }
+};
 
   const handleEdit = (step: number) => {
     setCurrentStep(step);
@@ -147,7 +144,7 @@ export default function IntakeForm() {
         <div className="mb-8 space-y-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground">
-              BOLD FITNESS
+              Cap's FITNESS
             </h1>
             <span className="text-sm text-muted-foreground">
               {currentStep === 6 ? "Review" : `Step ${currentStep} of ${TOTAL_STEPS}`}

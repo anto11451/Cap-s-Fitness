@@ -8,7 +8,7 @@ export default function LandingPage() {
 
   const sections = [
     {
-      title: "Client Intake",
+      title: "Client Assessment",
       description: "Complete your personalized fitness assessment in minutes",
       icon: ClipboardList,
       path: "/intake",
@@ -25,7 +25,7 @@ export default function LandingPage() {
     },
     {
       title: "About Us",
-      description: "Learn about our mission and meet the BOLD FITNESS team",
+      description: "Learn about our mission and meet the Cap's FITNESS team",
       icon: Users,
       path: "/about",
       color: "from-green-500 to-emerald-500",
@@ -57,7 +57,7 @@ export default function LandingPage() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Dumbbell className="w-12 h-12 text-primary" />
             <h1 className="text-5xl md:text-6xl font-bold text-white tracking-tight">
-              BOLD FITNESS
+              Cap's FITNESS
             </h1>
           </div>
           <p className="text-lg md:text-xl text-white/80 font-light max-w-2xl mx-auto">
@@ -101,7 +101,9 @@ export default function LandingPage() {
 
         <div className="text-center mt-12">
           <p className="text-xs text-white/50">
-            © 2024 BOLD FITNESS. Your journey to peak performance starts here.
+            © 2025 Cap’s Fitness. All rights reserved. 
+“The change begins the moment you get back up and keep pushing forward.”
+
           </p>
         </div>
       </div>

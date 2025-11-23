@@ -17,9 +17,16 @@ export default function Step5Nutrition({ formData, updateFormData }: Step5Props)
   const [loveInput, setLoveInput] = useState("");
   const [avoidInput, setAvoidInput] = useState("");
 
-  const addFoodLove = () => {
-    if (loveInput.trim() && !formData.foodsLove.includes(loveInput.trim())) {
-      updateFormData({ foodsLove: [...formData.foodsLove, loveInput.trim()] });
+  // Suggested foods
+  const suggestedFoods = [
+    "Chicken", "Eggs", "Rice", "Oats", "Broccoli",
+    "Roti", "Paneer", "Fish", "Dal", "Veggies"
+  ];
+
+  const addFoodLove = (food?: string) => {
+    const value = food ?? loveInput.trim();
+    if (value && !formData.foodsLove.includes(value)) {
+      updateFormData({ foodsLove: [...formData.foodsLove, value] });
       setLoveInput("");
     }
   };
@@ -28,9 +35,10 @@ export default function Step5Nutrition({ formData, updateFormData }: Step5Props)
     updateFormData({ foodsLove: formData.foodsLove.filter((f) => f !== item) });
   };
 
-  const addFoodAvoid = () => {
-    if (avoidInput.trim() && !formData.foodsAvoid.includes(avoidInput.trim())) {
-      updateFormData({ foodsAvoid: [...formData.foodsAvoid, avoidInput.trim()] });
+  const addFoodAvoid = (food?: string) => {
+    const value = food ?? avoidInput.trim();
+    if (value && !formData.foodsAvoid.includes(value)) {
+      updateFormData({ foodsAvoid: [...formData.foodsAvoid, value] });
       setAvoidInput("");
     }
   };
@@ -45,7 +53,10 @@ export default function Step5Nutrition({ formData, updateFormData }: Step5Props)
         <Label htmlFor="eatingPattern">
           Eating Pattern <span className="text-destructive">*</span>
         </Label>
-        <Select value={formData.eatingPattern} onValueChange={(value) => updateFormData({ eatingPattern: value })}>
+        <Select
+          value={formData.eatingPattern}
+          onValueChange={(value) => updateFormData({ eatingPattern: value })}
+        >
           <SelectTrigger id="eatingPattern" data-testid="select-eating-pattern">
             <SelectValue placeholder="Select your preferred eating pattern" />
           </SelectTrigger>
@@ -60,13 +71,27 @@ export default function Step5Nutrition({ formData, updateFormData }: Step5Props)
         </Select>
       </div>
 
+      {/* ------------------ FOODS YOU LOVE ------------------ */}
       <div className="space-y-3 p-6 rounded-lg bg-muted/30">
-        <Label>
-          Foods You Love
-        </Label>
+        <Label>Foods You Love</Label>
         <p className="text-sm text-muted-foreground">
-          Add foods you enjoy eating (we'll include them in your plan)
+          Tap a suggestion or add your own.
         </p>
+
+        {/* Suggested Chips */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          {suggestedFoods.map((food) => (
+            <button
+              key={food}
+              type="button"
+              onClick={() => addFoodLove(food)}
+              className="px-3 py-1 rounded-full bg-purple-200 text-purple-800 hover:bg-purple-300 text-xs font-medium transition"
+            >
+              {food}
+            </button>
+          ))}
+        </div>
+
         <div className="flex gap-2">
           <Input
             placeholder="e.g., Chicken, Rice, Broccoli"
@@ -75,24 +100,19 @@ export default function Step5Nutrition({ formData, updateFormData }: Step5Props)
             onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addFoodLove())}
             data-testid="input-foods-love"
           />
-          <Button
-            type="button"
-            size="icon"
-            onClick={addFoodLove}
-            data-testid="button-add-food-love"
-          >
+          <Button type="button" size="icon" onClick={() => addFoodLove()}>
             <Plus className="w-4 h-4" />
           </Button>
         </div>
+
         {formData.foodsLove.length > 0 && (
           <div className="flex flex-wrap gap-2 pt-2">
             {formData.foodsLove.map((food, idx) => (
               <Badge
                 key={idx}
                 variant="secondary"
-                className="cursor-pointer"
+                className="cursor-pointer px-2 py-1"
                 onClick={() => removeFoodLove(food)}
-                data-testid={`badge-food-love-${idx}`}
               >
                 {food}
                 <X className="w-3 h-3 ml-1" />
@@ -102,13 +122,27 @@ export default function Step5Nutrition({ formData, updateFormData }: Step5Props)
         )}
       </div>
 
+      {/* ------------------ FOODS YOU AVOID ------------------ */}
       <div className="space-y-3 p-6 rounded-lg bg-muted/30">
-        <Label>
-          Foods You Avoid
-        </Label>
+        <Label>Foods You Avoid</Label>
         <p className="text-sm text-muted-foreground">
-          Add foods you want to avoid (allergies, preferences, restrictions)
+          Tap a suggestion or add your own.
         </p>
+
+        {/* Suggested Chips */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          {suggestedFoods.map((food) => (
+            <button
+              key={food}
+              type="button"
+              onClick={() => addFoodAvoid(food)}
+              className="px-3 py-1 rounded-full bg-red-200 text-red-800 hover:bg-red-300 text-xs font-medium transition"
+            >
+              {food}
+            </button>
+          ))}
+        </div>
+
         <div className="flex gap-2">
           <Input
             placeholder="e.g., Dairy, Nuts, Gluten"
@@ -117,24 +151,19 @@ export default function Step5Nutrition({ formData, updateFormData }: Step5Props)
             onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addFoodAvoid())}
             data-testid="input-foods-avoid"
           />
-          <Button
-            type="button"
-            size="icon"
-            onClick={addFoodAvoid}
-            data-testid="button-add-food-avoid"
-          >
+          <Button type="button" size="icon" onClick={() => addFoodAvoid()}>
             <Plus className="w-4 h-4" />
           </Button>
         </div>
+
         {formData.foodsAvoid.length > 0 && (
           <div className="flex flex-wrap gap-2 pt-2">
             {formData.foodsAvoid.map((food, idx) => (
               <Badge
                 key={idx}
                 variant="destructive"
-                className="cursor-pointer"
+                className="cursor-pointer px-2 py-1"
                 onClick={() => removeFoodAvoid(food)}
-                data-testid={`badge-food-avoid-${idx}`}
               >
                 {food}
                 <X className="w-3 h-3 ml-1" />
@@ -144,17 +173,15 @@ export default function Step5Nutrition({ formData, updateFormData }: Step5Props)
         )}
       </div>
 
+      {/* ------------------ ADDITIONAL NOTES ------------------ */}
       <div className="space-y-2">
-        <Label htmlFor="additionalNotes">
-          Additional Notes
-        </Label>
+        <Label htmlFor="additionalNotes">Additional Notes</Label>
         <Textarea
           id="additionalNotes"
           placeholder="Any other preferences, dietary restrictions, or information you'd like us to know..."
           value={formData.additionalNotes}
           onChange={(e) => updateFormData({ additionalNotes: e.target.value })}
           rows={4}
-          data-testid="textarea-additional-notes"
         />
       </div>
     </div>

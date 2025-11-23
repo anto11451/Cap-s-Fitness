@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { useLocation } from "wouter";
 
 export default function AdminLogin() {
   const [password, setPassword] = useState("");
@@ -13,22 +13,12 @@ export default function AdminLogin() {
       localStorage.setItem("adminLoggedIn", "true");
       setLocation("/admin");
     } else {
-      alert("Incorrect admin password!");
+      alert("Incorrect password!");
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4">
-
-      {/* 🏠 HOME BUTTON */}
-      <Button
-        variant="ghost"
-        onClick={() => setLocation("/")}
-        className="mb-6"
-      >
-        Home
-      </Button>
-
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <Card className="max-w-sm w-full">
         <CardHeader>
           <CardTitle className="text-xl">Admin Login</CardTitle>

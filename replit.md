@@ -1,4 +1,4 @@
-# BOLD FITNESS Website
+# Cap's FITNESS Website
 
 A premium, app-like fitness coaching website with client intake, pricing, about, and blog functionality.
 
@@ -90,7 +90,7 @@ All intake form fields are collected and sent to Google Sheets with:
 - createdAt: timestamp
 
 ## Design Principles
-- Purple/pink gradient theme for BOLD FITNESS brand
+- Purple/pink gradient theme for Cap's FITNESS brand
 - Mobile-first responsive design
 - Card-based UI with hover effects
 - Smooth transitions between steps

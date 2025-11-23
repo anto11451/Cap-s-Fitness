@@ -21,7 +21,7 @@ export const blogPosts = pgTable("blog_posts", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   content: text("content").notNull(),
-  author: text("author").notNull().default("BOLD FITNESS Team"),
+  author: text("author").notNull().default("Cap's FITNESS Team"),
   category: text("category").notNull().default("Fitness Tips"),
   imageUrl: text("image_url"),
   createdAt: timestamp("created_at").notNull().defaultNow(),

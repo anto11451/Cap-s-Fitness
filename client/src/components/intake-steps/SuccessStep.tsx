@@ -16,7 +16,7 @@ export default function SuccessStep() {
 
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-            Intake Complete!
+            Bravo you nailed it!!!
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground">
             We'll contact you soon
@@ -25,10 +25,10 @@ export default function SuccessStep() {
 
         <div className="bg-card border border-card-border rounded-2xl p-8 space-y-4 max-w-lg mx-auto">
           <p className="text-base text-foreground">
-            Thank you for completing your fitness intake with <strong>BOLD FITNESS</strong>.
+            Thank you for completing! change begins here <strong>Cap's FITNESS</strong>.
           </p>
           <p className="text-sm text-muted-foreground">
-            Our coaching team is reviewing your information and will reach out within 24-48 hours 
+            Cap is reviewing your information and will reach out within 24-48 hours 
             with your personalized fitness plan tailored to your goals and preferences.
           </p>
         </div>

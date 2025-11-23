@@ -5,7 +5,7 @@ This prompt is written like a professional product brief so the AI produces the 
 
 # ✅ **THE PERFECT FULL PROMPT (Copy–Paste)**
 
-**Build a premium, high-end onboarding website for my fitness coaching brand “BOLD FITNESS.”
+**Build a premium, high-end onboarding website for my fitness coaching brand “Cap's FITNESS.”
 This website must look and feel like a modern mobile app.**
 
 ---
@@ -49,7 +49,7 @@ Use a **purple–pink gradient theme** or a **clean white modern UI** — whiche
 
 ### **Page 1 — Landing / Welcome Page**
 
-* Brand title: **BOLD FITNESS — Intake**
+* Brand title: **Cap's FITNESS — Intake**
 * Sub-headline: “Fast onboarding — feels like an app.”
 * Motivational micro-text
 * A “Start Now” button that leads into the multi-step form

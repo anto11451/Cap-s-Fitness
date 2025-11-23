@@ -17,12 +17,12 @@ export default function Step2Body({ formData, updateFormData }: Step2Props) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="height">
-            Height (cm) <span className="text-destructive">*</span>
+            Height (ft) <span className="text-destructive">*</span>
           </Label>
           <Input
             id="height"
             type="number"
-            placeholder="175"
+            placeholder="5.9"
             value={formData.height}
             onChange={(e) => updateFormData({ height: e.target.value })}
             data-testid="input-height"
@@ -74,7 +74,8 @@ export default function Step2Body({ formData, updateFormData }: Step2Props) {
               <SelectItem value="<2">Less than 2 hours</SelectItem>
               <SelectItem value="2-4">2-4 hours</SelectItem>
               <SelectItem value="4-6">4-6 hours</SelectItem>
-              <SelectItem value="6+">6+ hours</SelectItem>
+              <SelectItem value="6-8">6-8 hours</SelectItem>
+              <SelectItem value="8+">8+ hours</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -129,11 +130,11 @@ export default function Step2Body({ formData, updateFormData }: Step2Props) {
             <SelectValue placeholder="Select your activity level" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="sedentary">Sedentary</SelectItem>
-            <SelectItem value="lightly-active">Lightly Active</SelectItem>
-            <SelectItem value="moderately-active">Moderately Active</SelectItem>
-            <SelectItem value="very-active">Very Active</SelectItem>
-            <SelectItem value="athlete">Athlete</SelectItem>
+            <SelectItem value="sedentary">Sedentary (Little or no exercise)</SelectItem>
+            <SelectItem value="lightly-active">Lightly Active (Light exercise 1-3 days/week)</SelectItem>
+            <SelectItem value="moderately-active">Moderately Active (Moderate exercise 3-5 days/week)</SelectItem>
+            <SelectItem value="very-active">Very Active (Hard exercise 6-7 days/week)</SelectItem>
+            <SelectItem value="athlete">Athlete (Professional training, twice per day)</SelectItem>
           </SelectContent>
         </Select>
       </div>

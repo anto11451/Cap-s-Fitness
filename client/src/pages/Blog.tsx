@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,29 +26,19 @@ export default function Blog() {
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-primary/10 py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <Button
-            variant="ghost"
-            onClick={() => setLocation("/")}
-            data-testid="button-back-home"
-          >
+          <Button variant="ghost" onClick={() => setLocation("/")}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
           </Button>
-          <Button
-            variant="outline"
-            onClick={() => setLocation("/admin")}
-            data-testid="button-admin"
-          >
+          <Button variant="outline" onClick={() => setLocation("/admin")}>
             Admin
           </Button>
         </div>
 
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Fitness Blog
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Fitness Blog</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Expert tips, workout guides, and nutrition advice from the BOLD FITNESS team
+            Expert tips, workout guides, and nutrition advice from Cap's FITNESS
           </p>
         </div>
 
@@ -77,19 +66,16 @@ export default function Blog() {
               <Card
                 key={post.id}
                 className="hover-elevate transition-all cursor-pointer"
-                data-testid={`card-post-${post.id}`}
+                onClick={() => setLocation(`/blog/${post.id}`)}
               >
                 <CardHeader className="space-y-4">
                   <div className="flex items-center gap-2">
                     <Badge variant="secondary">{post.category}</Badge>
                   </div>
-                  <CardTitle className="text-xl line-clamp-2">
-                    {post.title}
-                  </CardTitle>
-                  <CardDescription className="line-clamp-3">
-                    {post.content}
-                  </CardDescription>
+                  <CardTitle className="text-xl line-clamp-2">{post.title}</CardTitle>
+                  <CardDescription className="line-clamp-3">{post.content}</CardDescription>
                 </CardHeader>
+
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-1">
@@ -97,6 +83,7 @@ export default function Blog() {
                       <span>{post.author}</span>
                     </div>
                   </div>
+
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Calendar className="w-4 h-4" />
                     <span>{formatDate(post.createdAt)}</span>
@@ -108,9 +95,7 @@ export default function Blog() {
         ) : (
           <Card className="text-center py-12">
             <CardContent>
-              <p className="text-muted-foreground">
-                No blog posts yet. Check back soon for fitness tips and advice!
-              </p>
+              <p className="text-muted-foreground">No blog posts yet. Check back soon!</p>
             </CardContent>
           </Card>
         )}

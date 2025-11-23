@@ -45,7 +45,7 @@ export default function About() {
         <div className="space-y-12">
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold">
-              About BOLD FITNESS
+              About Cap's FITNESS
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Empowering individuals to achieve their peak physical potential through 
@@ -59,13 +59,11 @@ export default function About() {
             </CardHeader>
             <CardContent className="space-y-4 text-lg leading-relaxed">
               <p>
-                At BOLD FITNESS, we believe that everyone deserves access to world-class fitness coaching 
-                that's tailored to their individual needs, goals, and lifestyle.
+                Cap’s FITNESS was created with a simple vision: make fitness easier for people who feel lost.
+I built my body alone — no coach, no mentor, no guidance — and I understand the confusion, the mistakes, and the slow progress that comes with it.
               </p>
               <p>
-                Founded by a team of certified personal trainers, nutritionists, and performance coaches, 
-                we've helped hundreds of clients transform their bodies and lives through our science-based, 
-                personalized approach to fitness.
+               Now, I guide others with what I never had: structured, science-backed, and experience-tested coaching that actually works.
               </p>
               <p>
                 Whether you're just starting your fitness journey or looking to break through a plateau, 
@@ -103,17 +101,16 @@ export default function About() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Certified Experts</h3>
+                  <h3 className="font-semibold text-lg mb-2">Tried, Tested & Practical Guidance
+</h3>
                   <p className="text-muted-foreground">
-                    All our coaches hold nationally recognized certifications and continue 
-                    their education to stay current with industry best practices.
+                   Everything I teach comes from years of hands-on training, experimentation, and science-backed principles that actually work in the real world..
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Proven Track Record</h3>
+                  <h3 className="font-semibold text-lg mb-2">Experiened personal coach</h3>
                   <p className="text-muted-foreground">
-                    With over 500+ successful client transformations, we have the experience 
-                    and expertise to help you reach your goals.
+                    With over 9 years of dedicated weight-training experience, I bring real, practical knowledge to help you transform safely and effectively.
                   </p>
                 </div>
                 <div>
@@ -144,7 +141,7 @@ export default function About() {
               onClick={() => setLocation("/intake")}
               data-testid="button-start-intake"
             >
-              Complete Your Intake
+              Complete Your Assessment
             </Button>
           </div>
         </div>
