@@ -1,7 +1,7 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
 // 🔥 ADD YOUR BACKEND URL HERE
-const API_BASE_URL = "https://cap-s-fitness.onrender.com"; 
+const API_BASE_URL = "https://cap-s-fitness.onrender.com";
 // Replace with your exact Render backend URL
 // Example format: "https://your-app-name.onrender.com"
 
