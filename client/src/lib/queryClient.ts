@@ -1,10 +1,7 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
-// 🔥 ADD YOUR BACKEND URL HERE
+// 🔥 BACKEND API URL
 const API_BASE_URL = "https://cap-s-fitness.onrender.com";
-// Replace with your exact Render backend URL
-// Example format: "https://your-app-name.onrender.com"
-
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
@@ -19,14 +16,13 @@ export async function apiRequest(
   data?: unknown | undefined,
 ): Promise<Response> {
 
-  // 🔥 IMPORTANT: prepend backend URL to all API calls
+  // 🔥 FIX: full correct backend URL
   const fullUrl = API_BASE_URL + url;
 
   const res = await fetch(fullUrl, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
     body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
   });
 
   await throwIfResNotOk(res);
@@ -41,19 +37,19 @@ export const getQueryFn: <T>(options: {
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
 
-    // 🔥 Same fix: prepend backend URL
-    const fullUrl = API_BASE_URL + (queryKey.join("/") as string);
+    // 🔥 FIX: Get only the first item (the actual URL)
+    const endpoint = queryKey[0] as string;
 
-    const res = await fetch(fullUrl, {
-      credentials: "include",
-    });
+    const fullUrl = API_BASE_URL + endpoint;
+
+    const res = await fetch(fullUrl);
 
     if (unauthorizedBehavior === "returnNull" && res.status === 401) {
       return null;
     }
 
     await throwIfResNotOk(res);
-    return await res.json();
+    return res.json();
   };
 
 export const queryClient = new QueryClient({
