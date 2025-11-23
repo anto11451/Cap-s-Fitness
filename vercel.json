@@ -1,10 +1,15 @@
 {
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
+  "version": 2,
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
-  },
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "client/dist/index.html" }
   ]
 }
